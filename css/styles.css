@@ -1,0 +1,76 @@
+/* styles.css */
+body {
+    background-color: rgba(0, 128, 0, 0.5); /* Verde transparente */
+    font-family: Arial, sans-serif;
+    color: #004080; /* Azul oscuro para contraste */
+}
+
+h1 {
+    text-align: center;
+    color: #e3f1ff; /* Celeste oscuro */
+    margin-top: 20px;
+}
+h2 {
+    
+    color: #e3f1ff; /* Celeste oscuro */
+    margin-top: 20px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #e0f7fa; /* Fondo celeste claro */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #004080; /* Azul oscuro */
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #0073e6; /* Celeste oscuro */
+    color: white;
+}
+
+td input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #004080; /* Azul oscuro */
+}
+p{
+    
+    color: #e3f1ff; /* Celeste oscuro */
+    margin-top: 20px;
+}
+
+.result {
+    background-color: #b3e5fc; /* Fondo celeste medio */
+    font-weight: bold;
+}
+
+select, button {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #004080; /* Azul oscuro */
+    background-color: #0073e6; /* Celeste oscuro */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#complejidad-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+}

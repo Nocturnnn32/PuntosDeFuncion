@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metricas de Medicion de Software
+
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/slick.css" type="text/css" />
+  <link rel="stylesheet" href="css/templatemo-style.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!--
+    
+TemplateMo 560 Astro Motion
+
+https://templatemo.com/tm-560-astro-motion
+
+-->
+</head>
+
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="video/gfp-astro-timelapse.mp4" type="video/mp4">
+  </video>
+
+  <h1 style="text-align: center;"> <img src="img/ingSistemas.ico" alt="Logo" class="mt-1 tm-logo"
+      style="width: 150px; height: 150px;"> Cálculo de Puntos de Función <img src="img/logo-upea.ico" alt="Logo" class="mt-1 tm-logo"
+      style="width: 120px; height: 120px;"></h1>
+
+  <h2 style="text-indent: 80px;" >Puntos de Función sin Ajustar:</h2>
+  <div style="text-align: right; margin-right: 80px;">
+    <select id="complejidad">
+      <option value="simple">Simple</option>
+      <option value="medio">Medio</option>
+      <option value="complejo">Complejo</option>
+    </select>
+  </div>
+
+  <br>
+  <table id="pfTable">
+    <tr>
+      <th>Parámetro de medición</th>
+      <th>Cuenta</th>
+      <th>Simple</th>
+      <th>Medio</th>
+      <th>Complejo</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <td>Número de entradas de usuario</td>
+      <td><input type="number" min="0" required></td>
+      <td>3</td>
+      <td>4</td>
+      <td>6</td>
+      <td class="result"></td>
+    </tr>
+    <tr>
+      <td>Número de salidas de usuario</td>
+      <td><input type="number" min="0" required></td>
+      <td>4</td>
+      <td>5</td>
+      <td>7</td>
+      <td class="result"></td>
+    </tr>
+    <tr>
+      <td>Número de peticiones de usuario</td>
+      <td><input type="number" min="0" required></td>
+      <td>3</td>
+      <td>4</td>
+      <td>6</td>
+      <td class="result"></td>
+    </tr>
+    <tr>
+      <td>Número de archivos</td>
+      <td><input type="number" min="0" required></td>
+      <td>7</td>
+      <td>10</td>
+      <td>15</td>
+      <td class="result"></td>
+    </tr>
+    <tr>
+      <td>Número de interfaces externas</td>
+      <td><input type="number" min="0" required></td>
+      <td>5</td>
+      <td>7</td>
+      <td>10</td>
+      <td class="result"></td>
+    </tr>
+    <tr>
+      <td colspan="5" style="text-align: right; font-weight: bold;">Total de Puntos de Función sin Ajustar:</td>
+      <td id="pfSinAjustar"></td>
+    </tr>
+  </table>
+
+  <button onclick="calcularPF()">Calcular PF sin Ajustar</button>
+
+  <h2 style="text-indent: 80px;" >Puntos de Funcion Ajustado:</h2>
+  <div style="display: flex; justify-content: center;">
+    <img src="img/datos.png" style="width: 700px; margin-left: 100px;">
+  </div>
+
+
+  <table id="favTable">
+    <tr>
+      <th>Fi</th>
+      <th>Pregunta</th>
+      <th>Valor (0-5)</th>
+    </tr>
+  </table>
+
+
+  <h2 style="text-align: center;">Suma total (Fi): <span id="sumaFAV"></span></h2>
+  <h2 style="text-indent: 80px;" >Datos para Estimaciones:</h2>
+  <table>
+      <tr>
+          <td><label for="dias_trabajo_mes">Días de trabajo por mes:</label></td>
+          <td><input type="number" id="dias_trabajo_mes" min="1" max="30" value="20" required></td>
+      </tr>
+      <tr>
+          <td><label for="salario_desarrollador">Salario de desarrollador por día (Bs):</label></td>
+          <td><input type="number" id="salario_desarrollador" step="0.01" min="0.01" required></td>
+      </tr>
+      <tr>
+          <td><label for="programadores">Número de programadores:</label></td>
+          <td><input type="number" id="programadores" min="1" max="10" value="1" required></td>
+      </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th>Resultados:</th>
+      <th>Valor</th>  
+    </tr>
+    <tr>
+      <td>Factor de Ponderacion:</td>
+      <td><span id="complejidadSeleccionada"></span></td>
+    </tr>
+    <tr>
+      <td>Total de Puntos de Función sin Ajustar:</td>
+      <td><span id="totalPFSinAjustar"></span></td>
+
+    </tr>
+    <tr>
+      <td>Total de Puntos de Función Ajustados:</td>
+      <td><span id="totalPFAjustados"></span></td>
+
+    </tr>
+    <tr>
+      <td>Cálculo Esfuerzo Nominal</td>
+      <td id="calesfNom"></td>
+    </tr>
+    <tr>
+      <td>Horas de Desarrollador</td>
+      <td id="hrsDev"></td>
+    </tr>
+    <tr>
+      <td>Duración por Meses</td>
+      <td id="durxmes"></td>
+    </tr>
+    <tr>
+      <td>Costo del Proyecto</td>
+      <td id="costotal"></td>
+    </tr>
+    <tr>
+      <td>Costo del Módulo</td>
+      <td id="costomodulo"></td>
+    </tr>
+
+  </table>
+
+  <button onclick="calcularPFA()">Calcular</button>
+
+  <br>   <br>   <br>
+
+  <script src="js/script.js"></script>
+  <!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/slick.js"></script>
+  <script src="js/templatemo-script.js"></script>
+
+  <footer id="copyright-footer"></footer>
+
+<script>
+  (function() {
+    var footer = document.getElementById('copyright-footer');
+    footer.style.cssText = 'text-align: center; padding: 20px; background-color: rgba(0,0,0,0.5); color: white; position: relative; z-index: 1000;';
+    footer.innerHTML = '&copy; 2024 Ruben Condori Cosme. Todos los derechos reservados.';
+  })();
+</script>
+</body>
+
+</html>
